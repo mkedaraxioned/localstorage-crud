@@ -104,11 +104,11 @@ function showData(){
     if (localStorage.getItem('all_persons')) {
         data_to_add = JSON.parse(localStorage.getItem('all_persons'));
         
-        data_to_add.forEach((person_print,j,) => {
+        data_to_add.forEach((person_print) => {
             const { firstname,lastname,gender,address } = person_print;
-            console.log("p="+person_print.firstname);
+
             var person_prop =['firstname','lastname','gender','address'];
-                    console.log("j="+person_print[person_prop[j]]);
+
                     for(var i=0;i<person_prop.length;i++)
                     {
                         console.log("l"+person_print[person_prop[i]]);
