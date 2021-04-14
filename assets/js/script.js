@@ -101,22 +101,57 @@ function showData(){
     // [firstname,lastname,gender,address];
     // var data_to_add= {firstname,lastname,gender,address};
     var data_to_add;
-    var person_prop =['firstname','lastname','gender','address'];
     if (localStorage.getItem('all_persons')) {
         data_to_add = JSON.parse(localStorage.getItem('all_persons'));
-           
-            data_to_add.forEach((person_print,person_prop) => {
-                    const { firstname,lastname,gender,address } = person_print;
-                    console.log(person_print.firstname);
+        
+        data_to_add.forEach((person_print,j,) => {
+            const { firstname,lastname,gender,address } = person_print;
+            console.log("p="+person_print.firstname);
+            var person_prop =['firstname','lastname','gender','address'];
+                    console.log("j="+person_print[person_prop[j]]);
                     for(var i=0;i<person_prop.length;i++)
                     {
-                        console.log(person_print[person_prop[i]]);
+                        console.log("l"+person_print[person_prop[i]]);
                     }
                 });    
             
 
                 
       }
+
+      var div_to_add=document.getElementsByClassName('personlist')[0];
+      var ul_main= document.createElement('ul');
+      var li_to_add=[];
+     for(var i=0;i<6;i++) {
+           li_to_add[i]= document.createElement('li');
+      }
+  
+  
+      for(var i=0;i<data_to_add.length;i++) {
+          var span_to_add=document.createElement("span");
+          span_to_add.innerHTML=data_to_add[i];
+          li_to_add[i].appendChild(span_to_add);
+      }
+  
+      // li_to_add[0].innerHTML="<span>"+firstname+"</span>";
+      // li_to_add[1].innerHTML="<span>"+lastname+"</span>";
+      // li_to_add[2].innerHTML="<span>"+gender+"</span>";
+      // li_to_add[3].innerHTML="<span>"+address+"</span>";
+      li_to_add[4].innerHTML='<button onClick="rowEdit(this)">Edit</button>';
+      li_to_add[5].innerHTML='<button onClick="rowDelete(this)">Delete</button>';
+  
+  
+      for(var i=0;i<6;i++){ 
+      ul_main.appendChild(li_to_add[i]);
+      }
+      div_to_add.appendChild(ul_main);
+  
+      clearForm();
+
+
+
+
+
     //   console.log(data_to_add+" data_to_add.length="+data_to_add.length +'type of '+typeof(data_to_add));
     // for(var k=0;k<data_to_add.length;k++){
     //     var div_to_add=document.getElementsByClassName('personlist')[0];
