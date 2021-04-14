@@ -19,7 +19,7 @@
   <!-- This meta tag is used for mobile device to display the page without any zooming,
        so how much the device is able to fit on the screen is what's shown initially. 
        Remove comments from this tag, when you want to apply media queries to the website. -->
-  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <!-- To adhear no-cache for Chrome -->
 <!--   <meta http-equiv="cache-control" content="no-store, no-cache, must-revalidate" />
@@ -52,7 +52,70 @@
     <!--header section start-->
     <!--main section start-->
     <main>
+      <div class="section1">
+        <div class="wrapper">
+          <form name="personinfo" id="personinfo">
+          <div>
+            <label for="firstname">First Name:</label>
+            <input type="text" name="firstname" id="firstname" class="firstname form-ip">
+            <span class="firstname-error">Firstname error here</span>
+          </div>
+          <div>
+            <label for="lastname">Last Name:</label>
+            <input type="text" name="lastname" id="lastname" class="lastname form-ip">
+            <span class="lastname-error">Lastname error here</span>
+          </div>
+          <div>
+            <label for="gender">Gender:</label>
+            <input type="radio" name="gender" id="male" value="Male" class="male form-ip">
+            <label for="male">Male</label>
+            <input type="radio" name="gender" id="female" value="Female" class="female form-ip">
+            <label for="female">Female</label>
 
+          </div>
+          <div>
+            <label for="address">Address</label>
+            <textarea name="address" id="address" name="address" cols="30" rows="10" class="address form-ip"></textarea>
+          </div>
+          <div>
+            <input type="checkbox" name="terms" id="terms" class="terms form-ip">
+            <label for="terms">Terms and Conditions</label>
+          </div>
+          <div>
+            <input type="submit" value="Submit" name="submit" class="submit">
+            <input type="button" value="Cancel" id="resetbtn" name="resetbtn" class="resetbtn">
+          </div>
+        </form>
+
+        <div>
+          <ul>
+            <li>
+              <span>Name</span>
+            </li>
+            <li>
+              <span>Last Name</span>
+            </li>
+            <li>
+              <span>Gender</span>
+            </li>
+            <li>
+              <span>Address</span>
+            </li>
+            <li>
+              <span>Edit</span>
+            </li>
+            <li>
+              <span>Delete</span>
+            </li>
+          </ul>  
+          <div class="personlist">
+
+          </div>
+         
+        </div>
+
+        </div>
+      </div>
     </main>
     <!--main section end-->
 
@@ -65,7 +128,7 @@
   </div>
   <!--container end-->
 
-<!-- <script src="js/vendors/jquery-1.8.3.min.js"></script>
-<script src="assets/js/script.js"></script> -->
+<!-- <script src="js/vendors/jquery-1.8.3.min.js"></script> -->
+<script src="assets/js/script.js"></script>
 </body>
 </html>
