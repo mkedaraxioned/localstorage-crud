@@ -120,6 +120,36 @@ li {
   main styling starts here
 =================================*/
 
+form {
+  padding: 100px 20%;
+  border: 2px solid #000;
+
+}
+
+ul {
+  border: 1px solid #000;
+  border-collapse: collapse;
+}
+
+li {
+  padding: 10px 20px;
+  border-right: 1px solid #000;
+  width: 100px;
+}
+
+form > div {
+  padding-bottom: 20px;
+}
+
+th {
+  font-weight: bold;
+}
+
+.firstname-error ,
+.lastname-error {
+  display: none;
+}
+
 
 
 
