@@ -99,14 +99,19 @@ function insertData(data_to_add) {
 
 function showData(){
     // [firstname,lastname,gender,address];
-    var data_to_add= {firstname,lastname,gender,address};
+    // var data_to_add= {firstname,lastname,gender,address};
+    var data_to_add;
     var person_prop =['firstname','lastname','gender','address'];
     if (localStorage.getItem('all_persons')) {
         data_to_add = JSON.parse(localStorage.getItem('all_persons'));
            
-            data_to_add.forEach((person_print) => {
+            data_to_add.forEach((person_print,person_prop) => {
                     const { firstname,lastname,gender,address } = person_print;
                     console.log(person_print.firstname);
+                    for(var i=0;i<person_prop.length;i++)
+                    {
+                        console.log(person_print[person_prop[i]]);
+                    }
                 });    
             
 
