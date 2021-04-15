@@ -212,6 +212,18 @@ function rowEditSubmit() {
 
 function rowDelete(sel_span) {
     if (confirm('Delete this person')) {
+        var remove_fname=sel_span.parentElement.parentElement.firstChild.firstChild.innerHTML;
+        console.log("remove fname= "+remove_fname);
+        all_persons = JSON.parse(localStorage.getItem('all_persons')); 
+        console.log("type of all person ="+typeof(all_persons));
+        all_persons.forEach((person, i) => {
+            console.log("type of person"+typeof(person));
+            if (person.firstname === remove_fname) {
+                all_persons.splice(i, 1);
+            }
+        });
+        localStorage.setItem('all_persons', JSON.stringify(all_persons));
+        
         var remove_ul = sel_span.parentElement.parentElement;
         remove_ul.remove();
         clearForm();
