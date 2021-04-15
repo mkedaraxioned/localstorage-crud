@@ -7,6 +7,7 @@ form.addEventListener('submit', validateForm);
 var resetbtn=document.getElementsByClassName('resetbtn')[0];
 var form_ip=document.getElementsByClassName('form-ip');
 
+window.addEventListener("load",showData(0));
 
 resetbtn.addEventListener('click',() =>{
     clearForm();
@@ -91,97 +92,59 @@ function insertData(data_to_add) {
     all_persons.push(person_to_add);
     // console.log('all perosons= '+all_persons.keys());
     localStorage.setItem('all_persons', JSON.stringify(all_persons));
-    localStorage.setItem('all_persons1',all_persons);
+    // if (localStorage.getItem('all_persons')) {
+    //     data_to_add = JSON.parse(localStorage.getItem('all_persons')); 
+    // } 
+    // else {
+    // } 
+    // localStorage.setItem('all_persons1',all_persons);
     clearForm();
-    showData();
+    var insertflag=1;
+    showData(insertflag);
+    insertflag=0;
 
 }
 
-function showData(){
+function showData(insertflag){
     // [firstname,lastname,gender,address];
     // var data_to_add= {firstname,lastname,gender,address};
     var data_to_add;
-    if (localStorage.getItem('all_persons')) {
+    if (localStorage.getItem('all_persons')) {  
         data_to_add = JSON.parse(localStorage.getItem('all_persons'));
+        var div_to_add=document.getElementsByClassName('personlist')[0];
+        if(insertflag){
+            div_to_add.querySelectorAll('*').forEach(n => n.remove());
+        }
+        
         
         data_to_add.forEach((person_print) => {
-            const { firstname,lastname,gender,address } = person_print;
+          const { firstname,lastname,gender,address } = person_print;
 
             var person_prop =['firstname','lastname','gender','address'];
+            // creation of ul and li
+            var ul_main= document.createElement('ul');
+             var li_to_add=[];
+            for(var i=0;i<6;i++) {
+             li_to_add[i]= document.createElement('li');
+            }
 
                     for(var i=0;i<person_prop.length;i++)
                     {
-                        console.log("l"+person_print[person_prop[i]]);
+                        // console.log("l"+person_print[person_prop[i]]);
+                        var span_to_add=document.createElement("span");
+                        span_to_add.innerHTML=person_print[person_prop[i]];
+                        li_to_add[i].appendChild(span_to_add);
                     }
-                });    
-            
-
-                
+                    li_to_add[4].innerHTML='<button onClick="rowEdit(this)">Edit</button>';
+                    li_to_add[5].innerHTML='<button onClick="rowDelete(this)">Delete</button>';
+                    for(var i=0;i<6;i++){ 
+                        ul_main.appendChild(li_to_add[i]);
+                        }
+                        div_to_add.appendChild(ul_main);
+              
+                });                    
       }
 
-      var div_to_add=document.getElementsByClassName('personlist')[0];
-      var ul_main= document.createElement('ul');
-      var li_to_add=[];
-     for(var i=0;i<6;i++) {
-           li_to_add[i]= document.createElement('li');
-      }
-  
-  
-      for(var i=0;i<data_to_add.length;i++) {
-          var span_to_add=document.createElement("span");
-          span_to_add.innerHTML=data_to_add[i];
-          li_to_add[i].appendChild(span_to_add);
-      }
-  
-      // li_to_add[0].innerHTML="<span>"+firstname+"</span>";
-      // li_to_add[1].innerHTML="<span>"+lastname+"</span>";
-      // li_to_add[2].innerHTML="<span>"+gender+"</span>";
-      // li_to_add[3].innerHTML="<span>"+address+"</span>";
-      li_to_add[4].innerHTML='<button onClick="rowEdit(this)">Edit</button>';
-      li_to_add[5].innerHTML='<button onClick="rowDelete(this)">Delete</button>';
-  
-  
-      for(var i=0;i<6;i++){ 
-      ul_main.appendChild(li_to_add[i]);
-      }
-      div_to_add.appendChild(ul_main);
-  
-      clearForm();
-
-
-
-
-
-    //   console.log(data_to_add+" data_to_add.length="+data_to_add.length +'type of '+typeof(data_to_add));
-    // for(var k=0;k<data_to_add.length;k++){
-    //     var div_to_add=document.getElementsByClassName('personlist')[0];
-    //     var ul_main= document.createElement('ul');
-    //     var li_to_add=[];
-        
-        
-    //     for(var i=0;i<data_to_add.length;i++) {
-    //         for(var j=0;j<6;j++) {
-    //               li_to_add[j]= document.createElement('li');
-    //          }
-    //          for(var l=0;l<person_prop.length;l++) {
-    //              var span_to_add=document.createElement("span");
-    //                  span_to_add.innerHTML=data_to_add[0].firstname;
-    //                 //  console.log("fir"+all_persons[0].firstname);
-    //                  li_to_add[i].appendChild(span_to_add);
-    //          }
-    //          li_to_add[4].innerHTML='<button onClick="rowEdit(this)">Edit</button>';
-    //          li_to_add[5].innerHTML='<button onClick="rowDelete(this)">Delete</button>';
-    //          for(var m=0;m<6;m++){ 
-    //          ul_main.appendChild(li_to_add[m]);
-    //          }
-    //          div_to_add.appendChild(ul_main);
-             
-            
-    //     }
-    
-    
-    
-    // }
 
 }
 
