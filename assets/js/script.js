@@ -89,14 +89,17 @@ function insertData(data_to_add) {
     {
         person_to_add[person_prop[i]]=data_to_add[i];
     }
-    all_persons.push(person_to_add);
     // console.log('all perosons= '+all_persons.keys());
-    localStorage.setItem('all_persons', JSON.stringify(all_persons));
-    // if (localStorage.getItem('all_persons')) {
-    //     data_to_add = JSON.parse(localStorage.getItem('all_persons')); 
-    // } 
-    // else {
-    // } 
+    if (localStorage.getItem('all_persons')) {
+        all_persons = JSON.parse(localStorage.getItem('all_persons')); 
+        all_persons.push(person_to_add);
+        localStorage.setItem('all_persons', JSON.stringify(all_persons));
+    } 
+    else {
+        all_persons.push(person_to_add);
+        localStorage.setItem('all_persons', JSON.stringify(all_persons));
+  
+    } 
     // localStorage.setItem('all_persons1',all_persons);
     clearForm();
     var insertflag=1;
