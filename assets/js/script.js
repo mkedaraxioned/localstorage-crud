@@ -18,6 +18,7 @@ var persons= {};
 var inputs=['firstname','lastname','male','female','address','terms'];
 
 var selected_ul=null;
+var sel_ul_localstorage;
 function validateForm(event) {
     event.preventDefault();
     if(selected_ul!=null) {
@@ -165,6 +166,7 @@ function clearForm() {
 
 function rowEdit(sel_span) {
     selected_ul = sel_span.parentElement.parentElement;
+    sel_ul_localstorage=selected_ul;
     var form_seq=[0,1,4],li_seq=[0,1,3];
     for(var i=0;i<form_seq.length;i++)
     {
@@ -179,6 +181,12 @@ function rowEdit(sel_span) {
         form_ip[3].checked = true;
     }
     form_ip[5].checked = true;
+
+
+   
+
+
+   
 }
 
 
@@ -195,9 +203,7 @@ function rowEditSubmit() {
         {
             selected_ul.childNodes[li_seq[i]].childNodes[0].innerHTML=form_ip[form_seq[i]].value;
         }    
-    // selected_ul.childNodes[0].childNodes[0].innerHTML=form_ip[0].value;
-    // selected_ul.childNodes[1].childNodes[0].innerHTML=form_ip[1].value;
-    // selected_ul.childNodes[3].childNodes[0].innerHTML=form_ip[4].value;    
+
     if(form_ip[2].checked){
         selected_ul.childNodes[2].childNodes[0].innerHTML="Male";
     }
@@ -207,6 +213,34 @@ function rowEditSubmit() {
     }
     selected_ul = 1;
     }
+
+    
+    var edit_fname=sel_ul_localstorage.firstChild.firstChild;
+    var edit_lname=edit_fname.parentElement.nextSibling.firstChild;
+    var edit_gender=edit_lname.parentElement.nextSibling.firstChild;
+    var edit_address=edit_gender.parentElement.nextSibling.firstChild;
+    var all_edit_values=[edit_fname,edit_lname,edit_gender,edit_address];
+    console.log("edit_lname= "+edit_lname.innerHTML);
+    console.log("edit_gender= "+edit_gender.innerHTML);
+    console.log("edit_address= "+edit_address.innerHTML);
+    // break;
+    // var edit_gender=sel_span.parentElement.parentElement.find(':nth-child(2)').firstChild.innerHTML;
+    // var edit_address=sel_span.parentElement.parentElement.find(':nth-child(3)').firstChild.innerHTML;    
+
+    // var edit_fname=sel_span.parentElement.parentElement.find     .firstChild.innerHTML;
+    var person_prop =['firstname','lastname','gender','address'];
+    console.log("edit fname= "+edit_fname.innerHTML);
+    all_persons = JSON.parse(localStorage.getItem('all_persons')); 
+    console.log("type of all person ="+typeof(all_persons));
+    // var current_form_ip=document.querySelectorAll('form-ip');
+    all_persons.forEach((person, i) => {
+        if (person.firstname === edit_fname.innerHTML) {
+            for(var j=0;j<person_prop.length;j++){                
+                    person[person_prop[j]]=all_edit_values[j].innerHTML;                
+            }
+        }
+    });
+    localStorage.setItem('all_persons', JSON.stringify(all_persons));
 
 }
 
