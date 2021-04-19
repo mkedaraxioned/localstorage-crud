@@ -80,17 +80,14 @@ function validateForm(event) {
   }
 
 function insertData(data_to_add) {
-    // [firstname,lastname,gender,address];
     console.log(data_to_add);
-
-
     var person_prop =['firstname','lastname','gender','address'];
     var person_to_add = {};
     for(var i=0;i<data_to_add.length;i++)
     {
         person_to_add[person_prop[i]]=data_to_add[i];
     }
-    // console.log('all perosons= '+all_persons.keys());
+
     if (localStorage.getItem('all_persons')) {
         all_persons = JSON.parse(localStorage.getItem('all_persons')); 
         all_persons.push(person_to_add);
@@ -101,7 +98,7 @@ function insertData(data_to_add) {
         localStorage.setItem('all_persons', JSON.stringify(all_persons));
   
     } 
-    // localStorage.setItem('all_persons1',all_persons);
+
     clearForm();
     var insertflag=1;
     showData(insertflag);
@@ -109,9 +106,7 @@ function insertData(data_to_add) {
 
 }
 
-function showData(insertflag){
-    // [firstname,lastname,gender,address];
-    // var data_to_add= {firstname,lastname,gender,address};
+function showData(insertflag) {
     var data_to_add;
     if (localStorage.getItem('all_persons')) {  
         data_to_add = JSON.parse(localStorage.getItem('all_persons'));
@@ -134,7 +129,6 @@ function showData(insertflag){
 
                     for(var i=0;i<person_prop.length;i++)
                     {
-                        // console.log("l"+person_print[person_prop[i]]);
                         var span_to_add=document.createElement("span");
                         span_to_add.innerHTML=person_print[person_prop[i]];
                         li_to_add[i].appendChild(span_to_add);
@@ -220,19 +214,8 @@ function rowEditSubmit() {
     var edit_gender=edit_lname.parentElement.nextSibling.firstChild;
     var edit_address=edit_gender.parentElement.nextSibling.firstChild;
     var all_edit_values=[edit_fname,edit_lname,edit_gender,edit_address];
-    console.log("edit_lname= "+edit_lname.innerHTML);
-    console.log("edit_gender= "+edit_gender.innerHTML);
-    console.log("edit_address= "+edit_address.innerHTML);
-    // break;
-    // var edit_gender=sel_span.parentElement.parentElement.find(':nth-child(2)').firstChild.innerHTML;
-    // var edit_address=sel_span.parentElement.parentElement.find(':nth-child(3)').firstChild.innerHTML;    
-
-    // var edit_fname=sel_span.parentElement.parentElement.find     .firstChild.innerHTML;
     var person_prop =['firstname','lastname','gender','address'];
-    console.log("edit fname= "+edit_fname.innerHTML);
     all_persons = JSON.parse(localStorage.getItem('all_persons')); 
-    console.log("type of all person ="+typeof(all_persons));
-    // var current_form_ip=document.querySelectorAll('form-ip');
     all_persons.forEach((person, i) => {
         if (person.firstname === edit_fname.innerHTML) {
             for(var j=0;j<person_prop.length;j++){                
@@ -247,11 +230,8 @@ function rowEditSubmit() {
 function rowDelete(sel_span) {
     if (confirm('Delete this person')) {
         var remove_fname=sel_span.parentElement.parentElement.firstChild.firstChild.innerHTML;
-        console.log("remove fname= "+remove_fname);
         all_persons = JSON.parse(localStorage.getItem('all_persons')); 
-        console.log("type of all person ="+typeof(all_persons));
         all_persons.forEach((person, i) => {
-            console.log("type of person"+typeof(person));
             if (person.firstname === remove_fname) {
                 all_persons.splice(i, 1);
             }
